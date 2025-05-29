@@ -1,0 +1,20 @@
+import google.generativeai as genai
+from geminiapi import API_KEY  
+
+# Configure API
+genai.configure(api_key=API_KEY)
+
+# Use 'gemini-pro' model for chat
+model = genai.GenerativeModel('gemini-1.5-flash-latest')
+
+# Start chat session (important!)
+chat = model.start_chat(history=[])
+
+# Function to interact with Jarvis (Gemini)
+def ask_jarvis(request):
+    try:
+        response = chat.send_message(request)
+        return response.text
+    except Exception as e:
+        return f"Jarvis Error: {e}"
+    
